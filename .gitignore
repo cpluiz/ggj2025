@@ -1,7 +1,6 @@
-# This .gitignore file should be placed at the root of your Unity project directory
-#
-# Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
-#
+### Git ignore file for modules ###
+
+# Unity folders to ignore
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -9,13 +8,6 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
-
-# MemoryCaptures can get excessive in size.
-# They also could contain extremely sensitive data
-/[Mm]emoryCaptures/
-
-# Recordings can get excessive in size
-/[Rr]ecordings/
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
@@ -25,6 +17,13 @@
 
 # Visual Studio cache directory
 .vs/
+.vsconfig
+
+# Visual Studio Code directory
+.vscode/
+
+# Intellij directory
+.idea/
 
 # Gradle cache directory
 .gradle/
@@ -59,8 +58,6 @@ sysinfo.txt
 *.apk
 *.aab
 *.unitypackage
-*.unitypackage.meta
-*.app
 
 # Crashlytics generated file
 crashlytics-build.properties
