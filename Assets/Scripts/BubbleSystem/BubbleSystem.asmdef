@@ -2,7 +2,8 @@
     "name": "BubbleSystem",
     "rootNamespace": "CTBW.BubbleSystem",
     "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c"
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:b97f0aa358c23a546ae804ece7c81b91"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

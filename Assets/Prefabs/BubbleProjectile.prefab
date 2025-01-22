@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3601347266907630760}
   - component: {fileID: 7682631942102236106}
   - component: {fileID: 321661456764559847}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BubbleProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,9 +50,9 @@ MonoBehaviour:
   _startBubbleSize: 0.005
   _minBubbleSize: 0.02
   _maxBubbleSize: 0.17
-  _bubbleIncrement: 0.0657
-  _projectileSpeed: 0.05
-  _projectileWeight: 0.52
+  _bubbleIncrement: 0.077
+  _projectileSpeed: 0.1
+  _projectileWeight: 0.8
   _minLifeTime: 10
   _maxLifeTime: 20
   _popEffects:
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 1670646754655972915}
   - component: {fileID: 5114119857986430522}
   - component: {fileID: 3453503936787931248}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}

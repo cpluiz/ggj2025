@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
-using System.Collections.Generic;
 
 namespace CTBW.BubbleSystem
 {
@@ -45,6 +44,8 @@ namespace CTBW.BubbleSystem
         }
         private void ShootAction_canceled(InputAction.CallbackContext obj)
         {
+            if (!isShooting) return;
+
             isShooting = false;
             if (currentProjectile != null)
             {

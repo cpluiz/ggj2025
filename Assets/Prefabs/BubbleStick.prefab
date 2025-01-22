@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89a717ee3f24b4a4eab0631d67520550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cooldown: 0.7
+  _cooldown: 0.5
   _shootAction: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   _projectilePrefab: {fileID: 3601347266907630760, guid: 328def8e1843dbb478b87d42241795c6, type: 3}
 --- !u!4 &789955247525390155 stripped
