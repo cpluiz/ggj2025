@@ -14,6 +14,7 @@ namespace CTBW.TowerSystem
         [SerializeField] protected SpriteRenderer _spriteRenderer;
         [SerializeField] protected Rigidbody _rb;
 
+        private string targetTag;
         protected void Awake()
         {
             SetSoldierImage();
@@ -26,9 +27,13 @@ namespace CTBW.TowerSystem
         }
         protected void OnCollisionEnter(Collision collision)
         {
-            if (LayerMask.LayerToName(collision.gameObject.layer).Contains("Tower"))
+            if(collision.gameObject.CompareTag(targetTag))
             {
-                SoldierReachedTower();
+                Tower targetTower = collision.gameObject.GetComponentInParent<Tower>();
+                if(targetTower != null)
+                {
+                    SoldierReachedTower(targetTower);
+                }                
             }
         }
 
@@ -41,9 +46,13 @@ namespace CTBW.TowerSystem
         {
             gameObject.layer = 1 << layer;
         }
-        public void SoldierReachedTower()
+        public void SetTargetTag(string targetTag)
         {
-            //TODO Check if is target tower, then calculate points
+            this.targetTag = targetTag;
+        }
+        public void SoldierReachedTower(Tower targetTower)
+        {
+            targetTower.TakeHit();
             StartCoroutine(Co_DestroySoldier());
         }
         public void BubbleReachedSoldier()

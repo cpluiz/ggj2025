@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 2121102050719242442, guid: 9898cd87cc01eb247a0a0c9cdc42609c, type: 3}
+      propertyPath: m_TagString
+      value: EnemyTower
+      objectReference: {fileID: 0}
     - target: {fileID: 4466956531658038133, guid: 9898cd87cc01eb247a0a0c9cdc42609c, type: 3}
       propertyPath: _soldierLayer.m_Bits
       value: 512
@@ -72,6 +76,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9076571736617961002, guid: 9898cd87cc01eb247a0a0c9cdc42609c, type: 3}
+      propertyPath: _tower
+      value: 
+      objectReference: {fileID: 8709674505679921135}
     m_RemovedComponents:
     - {fileID: 4466956531658038133, guid: 9898cd87cc01eb247a0a0c9cdc42609c, type: 3}
     m_RemovedGameObjects:
@@ -115,10 +123,12 @@ MonoBehaviour:
   _minSpawnInteraval: 7
   _maxSpawnInteraval: 14
   _lateralOffset: 0.25
+  _maxHits: 10
   _soldierPrefab: {fileID: 8873728246836118655, guid: 29cfab00723e737498fa2e74bedb0537, type: 3}
   _soldierLayer:
     serializedVersion: 2
     m_Bits: 512
+  _targetTag: PlayerTower
   _spawnPoint: {fileID: 5165029149239827349}
 --- !u!1001 &5180791215376126794
 PrefabInstance:
@@ -142,7 +152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2447068174707074973, guid: 28d2d22aa52fa8440a31f751c368997d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9961947
+      value: 0.9990483
       objectReference: {fileID: 0}
     - target: {fileID: 2447068174707074973, guid: 28d2d22aa52fa8440a31f751c368997d, type: 3}
       propertyPath: m_LocalRotation.x
@@ -150,7 +160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2447068174707074973, guid: 28d2d22aa52fa8440a31f751c368997d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.08715578
+      value: -0.043619405
       objectReference: {fileID: 0}
     - target: {fileID: 2447068174707074973, guid: 28d2d22aa52fa8440a31f751c368997d, type: 3}
       propertyPath: m_LocalRotation.z
@@ -162,7 +172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2447068174707074973, guid: 28d2d22aa52fa8440a31f751c368997d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -10
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 2447068174707074973, guid: 28d2d22aa52fa8440a31f751c368997d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

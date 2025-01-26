@@ -15,6 +15,7 @@ namespace CTBW.TowerSystem
         [Header("Soldier Config")]
         [SerializeField] protected Soldier _soldierPrefab;
         [SerializeField] protected LayerMask _soldierLayer;
+        [SerializeField, TagSelector] protected string _targetTag;
 
         [Header("References")]
         [SerializeField] protected Transform _spawnPoint;
@@ -22,11 +23,13 @@ namespace CTBW.TowerSystem
         protected bool CanSpawn = true;
         protected int currentHits = 0;
 
+        public int MaxHP { get { return _maxHits; } }
+        public int CurrentDamage { get { return currentHits; } }
+
         protected void Awake()
         {
             StartCoroutine(Co_SpawnSoldier());
         }
-
         protected void OnDestroy()
         {
             StopAllCoroutines();
@@ -40,6 +43,7 @@ namespace CTBW.TowerSystem
 
             Soldier newSoldier = Instantiate<Soldier>(_soldierPrefab, spawnPosition, _spawnPoint.rotation);
             newSoldier.SetLayer(_soldierLayer);
+            newSoldier.SetTargetTag(_targetTag);
         }
         protected IEnumerator Co_SpawnSoldier()
         {
@@ -50,6 +54,11 @@ namespace CTBW.TowerSystem
                 SpawnSoldier();
                 nextSpawn = Random.Range(_minSpawnInteraval, _maxSpawnInteraval);
             }
+        }
+
+        public void TakeHit()
+        {
+            currentHits++;
         }
     }
 }

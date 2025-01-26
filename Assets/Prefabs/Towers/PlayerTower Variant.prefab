@@ -56,6 +56,26 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2121102050719242442, guid: 9898cd87cc01eb247a0a0c9cdc42609c, type: 3}
+      propertyPath: m_TagString
+      value: PlayerTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 3066903379645747549, guid: 9898cd87cc01eb247a0a0c9cdc42609c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3066903379645747549, guid: 9898cd87cc01eb247a0a0c9cdc42609c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4466956531658038133, guid: 9898cd87cc01eb247a0a0c9cdc42609c, type: 3}
+      propertyPath: _maxHits
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4466956531658038133, guid: 9898cd87cc01eb247a0a0c9cdc42609c, type: 3}
+      propertyPath: _targetTag
+      value: EnemyTower
+      objectReference: {fileID: 0}
     - target: {fileID: 4466956531658038133, guid: 9898cd87cc01eb247a0a0c9cdc42609c, type: 3}
       propertyPath: _soldierLayer.m_Bits
       value: 256
@@ -71,6 +91,50 @@ PrefabInstance:
     - target: {fileID: 6215073180413265047, guid: 9898cd87cc01eb247a0a0c9cdc42609c, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.856
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252697326717348010, guid: 9898cd87cc01eb247a0a0c9cdc42609c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252697326717348010, guid: 9898cd87cc01eb247a0a0c9cdc42609c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252697326717348010, guid: 9898cd87cc01eb247a0a0c9cdc42609c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543208879674097495, guid: 9898cd87cc01eb247a0a0c9cdc42609c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.006
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543208879674097495, guid: 9898cd87cc01eb247a0a0c9cdc42609c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.006
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543208879674097495, guid: 9898cd87cc01eb247a0a0c9cdc42609c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.006
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543208879674097495, guid: 9898cd87cc01eb247a0a0c9cdc42609c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.012
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543208879674097495, guid: 9898cd87cc01eb247a0a0c9cdc42609c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543208879674097495, guid: 9898cd87cc01eb247a0a0c9cdc42609c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543208879674097495, guid: 9898cd87cc01eb247a0a0c9cdc42609c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.035
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543208879674097495, guid: 9898cd87cc01eb247a0a0c9cdc42609c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
