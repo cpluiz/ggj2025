@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Anchor
+  - BubbleShooter
   layers:
   - Default
   - TransparentFX
@@ -14,10 +15,10 @@ TagManager:
   - UI
   - Environment
   - Bubble
-  - Soldier
-  - 
-  - 
-  - 
+  - PlayerSoldier
+  - EnemySoldier
+  - PlayerTower
+  - EnemyTower
   - 
   - 
   - 

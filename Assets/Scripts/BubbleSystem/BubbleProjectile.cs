@@ -8,6 +8,7 @@ namespace CTBW.BubbleSystem
     public class BubbleProjectile : MonoBehaviour
     {
         [Header("Configuration")]
+        [SerializeField] protected LayerMask _targetLayer;
         [SerializeField, Range(0, 0.1f)] protected float _startBubbleSize;
         [SerializeField, Range(0, 0.1f)] protected float _minBubbleSize;
         [SerializeField, Range(0.1f, 0.5f)] protected float _maxBubbleSize;
@@ -33,9 +34,11 @@ namespace CTBW.BubbleSystem
         protected Vector3 _currentBubbleScale;
         protected Vector3 _forwardVector;
 
-        protected bool _isShooting = false;
+        protected bool _hasBeenShooted = false;
 
         public float CurrentBubbleSize { get { return _currentBubbleSize; } }
+        // used only on enemy shooter;
+        public float RandomTargetBubbleSize { get { return Random.Range(_minBubbleSize, _maxBubbleSize - _minBubbleSize); } }
 
         protected void Start()
         {
@@ -48,7 +51,7 @@ namespace CTBW.BubbleSystem
         }
         protected void FixedUpdate()
         {
-            if (!_isShooting) return;
+            if (!_hasBeenShooted) return;
 
             _rb.useGravity = false;
             _rb.AddForce(Physics.gravity * (_rb.mass * _rb.mass));
@@ -63,14 +66,25 @@ namespace CTBW.BubbleSystem
 
         protected void OnCollisionEnter(Collision collision)
         {
-            if (!_isShooting) return;
-            //TODO diferentiate between environment and enemies
+            if (!_hasBeenShooted) return;
+
+            if (collision.gameObject.CompareTag("BubbleShooter")) return;
+
+            if((collision.gameObject.layer & (1 << _targetLayer.value)) != 0)
+            {
+                Soldier targetSoldier = collision.gameObject.GetComponent<Soldier>();
+                if(targetSoldier != null)
+                {
+                    targetSoldier.BubbleReachedSoldier();
+                }
+            }
+
             StartCoroutine(Co_PopBubble());
         }
 
         public void IncreaseBuble(float deltaTime)
         {
-            if (_isShooting) return;
+            if (_hasBeenShooted) return;
 
             _currentBubbleSize += _bubbleIncrement * deltaTime;
             _currentBubbleScale.x = _currentBubbleScale.y = _currentBubbleScale.z = _currentBubbleSize;
@@ -91,7 +105,7 @@ namespace CTBW.BubbleSystem
             _forwardVector = transform.forward;
 
             transform.parent = null;
-            _isShooting = true;
+            _hasBeenShooted = true;
             _rb.mass = Mathf.Lerp(_minBubbleSize, _maxBubbleSize, _currentBubbleSize) * _projectileWeight;
             _rb.AddForce(_forwardVector * ( Mathf.InverseLerp(_minBubbleSize, _maxBubbleSize, _currentBubbleSize) * _projectileSpeed), ForceMode.Impulse);
 
@@ -100,6 +114,10 @@ namespace CTBW.BubbleSystem
                 _audioSource.PlayOneShot(_shotEffects[Random.Range(0, _shotEffects.Length)]);
             }
             StartCoroutine(Co_BubbleExpire());
+        }
+        public void SetTargetLayer(LayerMask targetLayer)
+        {
+            _targetLayer |= targetLayer;
         }
 
         protected IEnumerator Co_PopBubble(bool playPopSound = false)

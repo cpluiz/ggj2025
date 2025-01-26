@@ -26,15 +26,9 @@ namespace CTBW.TowerSystem
         }
         protected void OnCollisionEnter(Collision collision)
         {
-            if(LayerMask.LayerToName(collision.gameObject.layer) == "Bubble")
+            if (LayerMask.LayerToName(collision.gameObject.layer).Contains("Tower"))
             {
-                //TODO give player some gold/points/wathever
-                DestroySoldier();
-            }
-            if (LayerMask.LayerToName(collision.gameObject.layer) == "Tower")
-            {
-                //TODO remove health from tower
-                DestroySoldier();
+                SoldierReachedTower();
             }
         }
 
@@ -43,18 +37,31 @@ namespace CTBW.TowerSystem
         {
             _spriteRenderer.sprite = _soldierSprites[Random.Range(0, _soldierSprites.Length)];
         }
-        public void DestroySoldier()
+        public void SetLayer(LayerMask layer)
+        {
+            gameObject.layer = 1 << layer;
+        }
+        public void SoldierReachedTower()
+        {
+            //TODO Check if is target tower, then calculate points
+            StartCoroutine(Co_DestroySoldier());
+        }
+        public void BubbleReachedSoldier()
         {
             if (_rb.useGravity) return;
             _rb.useGravity = true;
             _rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
             _rb.AddRelativeTorque(_angularVelocityWhenDestroying, ForceMode.Impulse);
+            StartCoroutine(Co_DestroySoldier(1));
+        }
+        protected void DestroySoldier()
+        {
             StartCoroutine(Co_DestroySoldier());
         }
 
-        protected IEnumerator Co_DestroySoldier()
+        protected IEnumerator Co_DestroySoldier(float destroyAfterSeconds = 0)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(destroyAfterSeconds);
             Destroy(gameObject);
         }
     }

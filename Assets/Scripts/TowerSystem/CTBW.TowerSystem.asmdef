@@ -1,7 +1,9 @@
 {
     "name": "TowerSystem",
     "rootNamespace": "CTBW.TowerSystem",
-    "references": [],
+    "references": [
+        "GUID:ce80bcbfde6ff054aa124d2630b0e345"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

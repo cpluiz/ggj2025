@@ -7,25 +7,28 @@ namespace CTBW.BubbleSystem
     public class BubbleShooter : MonoBehaviour
     {
         [Header("Configuration")]
-        [SerializeField] private float _cooldown;
-        [SerializeField] InputActionReference _shootAction;
+        [SerializeField] protected float _cooldown;
+        [SerializeField] private InputActionReference _shootAction;
+        [SerializeField] protected LayerMask _targetLayer;
 
         [Header("Refferences")]
-        [SerializeField] private BubbleProjectile _projectilePrefab;
+        [SerializeField] protected BubbleProjectile _projectilePrefab;
 
-        private bool canShoot = true;
-        private bool isShooting = false;
-        private BubbleProjectile currentProjectile;
+        protected bool canShoot = true;
+        protected bool isShooting = false;
+        protected BubbleProjectile currentProjectile;
 
-        private Coroutine cooldownCoroutine;
+        protected Coroutine cooldownCoroutine;
 
         private void OnEnable()
         {
+            if (_shootAction == null) return;
             _shootAction.action.performed += ShootAction_performed;
             _shootAction.action.canceled += ShootAction_canceled;
         }
         private void OnDisable()
         {
+            if (_shootAction == null) return;
             _shootAction.action.performed -= ShootAction_performed;
             _shootAction.action.canceled -= ShootAction_canceled;
 
@@ -34,15 +37,31 @@ namespace CTBW.BubbleSystem
                 cooldownCoroutine = StartCoroutine(Co_RunCooldown());
             }
         }
+        protected void Update()
+        {
+            if (isShooting && currentProjectile != null)
+            {
+                currentProjectile.IncreaseBuble(Time.deltaTime);
+            }
+        }
         private void ShootAction_performed(InputAction.CallbackContext obj)
+        {
+            StartShooting();
+        }
+        private void ShootAction_canceled(InputAction.CallbackContext obj)
+        {
+            ShootBubble();
+        }
+        protected void StartShooting()
         {
             if (!canShoot) return;
 
             isShooting = true;
             canShoot = false;
             currentProjectile = Instantiate<BubbleProjectile>(_projectilePrefab, this.transform);
+            currentProjectile.SetTargetLayer(_targetLayer);
         }
-        private void ShootAction_canceled(InputAction.CallbackContext obj)
+        protected void ShootBubble()
         {
             if (!isShooting) return;
 
@@ -51,27 +70,17 @@ namespace CTBW.BubbleSystem
             {
                 currentProjectile.ShootBubble();
             }
-            if(cooldownCoroutine == null)
+            if (cooldownCoroutine == null)
             {
                 cooldownCoroutine = StartCoroutine(Co_RunCooldown());
             }
         }
 
-        private void Update()
+        protected IEnumerator Co_RunCooldown()
         {
-            if (isShooting && currentProjectile != null)
-            {
-                currentProjectile.IncreaseBuble(Time.deltaTime);
-            }
-        }
-
-        private IEnumerator Co_RunCooldown()
-        {
-            Debug.Log("Waiting for cooldown");
             yield return new WaitForSecondsRealtime(_cooldown);
             canShoot = true;
             cooldownCoroutine = null;
-            Debug.Log("Can shoot again");
         }
     }
 }
